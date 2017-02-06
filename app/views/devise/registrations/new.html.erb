@@ -1,7 +1,13 @@
+<% if Rails.env.development? %>
 <script language="Javascript">
   Stripe.setPublishableKey("<%= ENV['STRIPE_TEST_PUBLISHABLE_KEY'] %>");
 </script>
-
+<% end %>
+<% if Rails.env.production? %>
+<script language="Javascript">
+  Stripe.setPublishableKey("<%= ENV['STRIPE_LIVE_PUBLISHABLE_KEY'] %>");
+</script>
+<% end %>
 <%= bootstrap_devise_error_messages! %>
 <div class="panel panel-default devise-bs">
   <div class="panel-heading">
